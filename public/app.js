@@ -58,6 +58,9 @@ function displaySearchResults(results) {
   const country = results[0];
   document.querySelector(".flip-card-front img").src = country.flags.svg;
   document.querySelector(".capital span").textContent = country.capital;
+  document.querySelector(".currency span").textContent = Object.values(
+    country.currencies
+  )[0].name;
   document.querySelector(".population span").textContent =
     country.population.toLocaleString();
   // const flag = country.flags.svg;

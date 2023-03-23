@@ -55,28 +55,31 @@ function getSearchResults(query) {
 }
 
 function displaySearchResults(results) {
-  searchResults.textContent = "";
   const country = results[0];
-  const flag = country.flags.svg;
-  const capital = country.capital[0];
-  const population = country.population;
-  const currency = Object.values(country.currencies)[0].name;
+  document.querySelector(".flip-card-front img").src = country.flags.svg;
+  document.querySelector(".capital span").textContent = country.capital;
+  document.querySelector(".population span").textContent =
+    country.population.toLocaleString();
+  // const flag = country.flags.svg;
+  // const capital = country.capital[0];
+  // const population = country.population;
+  // const currency = Object.values(country.currencies)[0].name;
 
-  const flagElement = document.createElement("img");
-  flagElement.src = flag;
-  flagElement.alt = `${country.name.common} flag`;
-  searchResults.appendChild(flagElement);
+  // const flagElement = document.createElement("img");
+  // flagElement.src = flag;
+  // flagElement.alt = `${country.name.common} flag`;
+  // searchResults.appendChild(flagElement);
 
-  const capitalElement = document.createElement("p");
-  capitalElement.textContent = `Capital: ${capital}`;
-  searchResults.appendChild(capitalElement);
+  // const capitalElement = document.createElement("p");
+  // capitalElement.textContent = `Capital: ${capital}`;
+  // searchResults.appendChild(capitalElement);
 
-  const populationElement = document.createElement("p");
-  populationElement.textContent = `Population: ${population.toLocaleString()}`;
-  searchResults.appendChild(populationElement);
+  // const populationElement = document.createElement("p");
+  // populationElement.textContent = `Population: ${population.toLocaleString()}`;
+  // searchResults.appendChild(populationElement);
 
-  const currencyElement = document.createElement("p");
-  currencyElement.textContent = `Currency: ${currency}`;
-  searchResults.style.padding = "20px";
-  searchResults.appendChild(currencyElement);
+  // const currencyElement = document.createElement("p");
+  // currencyElement.textContent = `Currency: ${currency}`;
+  // searchResults.style.padding = "20px";
+  // searchResults.appendChild(currencyElement);
 }

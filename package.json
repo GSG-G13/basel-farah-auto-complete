@@ -1,7 +1,7 @@
 {
   "name": "Week5-Farah-Shatha",
   "version": "1.0.0",
-  "description": "Auto complete project",
+  "description": "Week5-Farah-Shatha",
   "main": "index.js",
   "scripts": {
     "start": "node ./src/server.js",
@@ -11,12 +11,12 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/GSG-G13/basel-farah-auto-complete.git"
+    "url": "git+https://github.com/GSG-G13/Week5-Farah-Shatha.git"
   },
   "bugs": {
-    "url": "https://github.com/GSG-G13/basel-farah-auto-complete/issues"
+    "url": "https://https://github.com/GSG-G13/Week5-Farah-Shatha.git/issues"
   },
-  "homepage": "https://github.com/GSG-G13/basel-farah-auto-complete#readme",
+  "homepage": "https://github.com/https://github.com/GSG-G13/Week5-Farah-Shatha.git#readme",
   "dependencies": {
     "express": "^4.18.2"
   }

@@ -1,6 +1,7 @@
 const searchInput = document.querySelector("header .search-input input");
 const searchSuggestions = document.querySelector("header .search-options");
 const searchResults = document.querySelector(".search-results");
+const gallery = document.getElementById("image-gallery");
 searchInput.addEventListener("input", handleInput);
 
 function handleInput() {
@@ -8,22 +9,18 @@ function handleInput() {
   getSearchSuggestions(value);
 }
 
-const fetchData = (url, cb) => {
-  const xhr = new XMLHttpRequest();
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState === 4 && xhr.status === 200) {
-      const data = JSON.parse(xhr.responseText);
-      cb(data);
-    }
-  };
-  xhr.open("GET", url);
-  xhr.send();
-};
+function fetchData(url) {
+  return fetch(url).then((response) => response.json());
+}
 
 function getSearchSuggestions(query) {
-  fetchData(`/countries/${query}`, (data) => {
-    displaySearchSuggestions(data);
-  });
+  fetchData(`/countries/${query}`)
+    .then((data) => {
+      displaySearchSuggestions(data);
+    })
+    .catch((error) => {
+      console.log("Error:", error);
+    });
 }
 
 function displaySearchSuggestions(suggestions) {
@@ -38,6 +35,8 @@ function displaySearchSuggestions(suggestions) {
       searchSuggestions.classList.remove("scroll-add");
       searchInput.value = "";
       getSearchResults(suggestion);
+      displayImageGallery(suggestion);
+
     });
     searchSuggestions.appendChild(suggestionElement);
   });
@@ -49,9 +48,13 @@ function displaySearchSuggestions(suggestions) {
 }
 
 function getSearchResults(query) {
-  fetchData(`https://restcountries.com/v2/name/${query}`, (data) => {
-    displaySearchResults(data);
-  });
+  fetchData(`https://restcountries.com/v2/name/${query}`)
+    .then((data) => {
+      displaySearchResults(data);
+    })
+    .catch((error) => {
+      console.log("Error:", error);
+    });
 }
 
 function displaySearchResults(results) {
@@ -63,26 +66,25 @@ function displaySearchResults(results) {
   )[0].name;
   document.querySelector(".population span").textContent =
     country.population.toLocaleString();
-  // const flag = country.flags.svg;
-  // const capital = country.capital[0];
-  // const population = country.population;
-  // const currency = Object.values(country.currencies)[0].name;
-
-  // const flagElement = document.createElement("img");
-  // flagElement.src = flag;
-  // flagElement.alt = `${country.name.common} flag`;
-  // searchResults.appendChild(flagElement);
-
-  // const capitalElement = document.createElement("p");
-  // capitalElement.textContent = `Capital: ${capital}`;
-  // searchResults.appendChild(capitalElement);
-
-  // const populationElement = document.createElement("p");
-  // populationElement.textContent = `Population: ${population.toLocaleString()}`;
-  // searchResults.appendChild(populationElement);
-
-  // const currencyElement = document.createElement("p");
-  // currencyElement.textContent = `Currency: ${currency}`;
-  // searchResults.style.padding = "20px";
-  // searchResults.appendChild(currencyElement);
-}
+  };
+  function displayImageGallery(query) {
+    const imageGallery = document.querySelector('#image-gallery');
+    fetch(`https://api.unsplash.com/search/photos?query=${query}&per_page=6`, {
+      headers: {
+        Authorization: 'Client-ID 6aLc2g_FnKCMK7lDo6WWCQmBiSfXRsXMycs2SHwr0o0'
+      }
+    })
+      .then(response => response.json())
+      .then(data => {
+        imageGallery.innerHTML = '';
+        const images = data.results;
+        images.forEach(image => {
+          const img = document.createElement('img');
+          img.src = image.urls.regular;
+          img.alt = image.alt_description;
+          imageGallery.appendChild(img);
+        });
+      })
+      .catch(error => console.error(error));
+  }
+  

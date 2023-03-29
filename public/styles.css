@@ -7,18 +7,34 @@
 
 /* Body */
 body {
+  display: flex;
+  flex-direction: column;
+  background-image: url(https://wallpaperaccess.com/full/1201903.jpg);
+  background-position:inherit;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-
-/* Header */
-header {
-  background-color: #05203c;
+nav {
   color: #fff;
-  display: flex;
-  align-items: center;
   flex-wrap: wrap;
   row-gap: 50px;
   padding: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+/* Header */
+header{
+  color: #fff;
+  flex-direction: column;
+  row-gap: 30px;
+  padding: 50px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 header .logo {
   cursor: pointer;
@@ -82,18 +98,21 @@ header .search-options ::-webkit-scrollbar-thumb:hover {
   background-color: var(--main-color);
 }
 .search-results {
-  width: fit-content;
-    display: block;
-    margin: auto 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: FFFFFF ;
 }
 /* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
 .flip-card {
+  font-family: 'Courier New', Courier, monospace;
   background-color: transparent;
   width: 500px;
   height: 250px;
-  border: 1px solid #f1f1f1;
+  border: 1px solid #c3b1c2;
   perspective: 1000px; /* Remove this if you don't want the 3D effect */
   margin: auto 20px;
+ 
 }
 
 /* This container is needed to position the front and back side */
@@ -102,6 +121,7 @@ header .search-options ::-webkit-scrollbar-thumb:hover {
   width: 100%;
   height: 100%;
   text-align: center;
+  justify-content: center;
   transition: transform 0.8s;
   transform-style: preserve-3d;
 }
@@ -122,7 +142,7 @@ header .search-options ::-webkit-scrollbar-thumb:hover {
 
 /* Style the front side (fallback if image is missing) */
 .flip-card-front {
-  background-color: #bbb;
+  background-color: transparent;
   color: black;
 }
 .flip-card-front img {
@@ -134,7 +154,22 @@ header .search-options ::-webkit-scrollbar-thumb:hover {
 
 /* Style the back side */
 .flip-card-back {
-  background-color: #05203c;
+  margin-top:60px;
+  text-align: center;
+  justify-content: center;
+  background-image: linear-gradient(transparent,#563f50,transparent);
   color: white;
   transform: rotateY(180deg);
+}
+#image-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#image-gallery img {
+  width: 400px;
+  height: 400px;
+  object-fit: cover;
+  margin: 10px;
 }
